@@ -1,0 +1,45 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","className":"jv-main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group jv-main"><!-- wp:group {"align":"wide","className":"jv-page-head","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide jv-page-head"><!-- wp:paragraph {"className":"jv-eyebrow"} -->
+<p class="jv-eyebrow">[jv_t en="Stories" cs="Příběhy"]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:query-title {"type":"archive","showPrefix":false} /-->
+
+<!-- wp:term-description /--></div>
+<!-- /wp:group -->
+
+<!-- wp:query {"queryId":1,"query":{"inherit":true},"align":"wide","className":"jv-grid"} -->
+<div class="wp-block-query alignwide jv-grid"><!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
+<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3"} /-->
+
+<!-- wp:group {"className":"jv-post-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group jv-post-meta"><!-- wp:post-terms {"term":"category"} /-->
+
+<!-- wp:post-date /--></div>
+<!-- /wp:group -->
+
+<!-- wp:post-title {"level":2,"isLink":true} /-->
+
+<!-- wp:post-excerpt {"excerptLength":25} /-->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
+<!-- wp:query-pagination-previous /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph -->
+<p>[jv_t en="Nothing here yet." cs="Zatím tu nic není."]</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
