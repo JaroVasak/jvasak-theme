@@ -12,6 +12,7 @@ Minimal block theme for [jvasak.com](https://jvasak.com), replacing Neve. Self-h
 | `assets/fonts/` | Spectral 400 (+ italic) and DM Sans 400–700 variable (+ italic), latin and latin-ext woff2 |
 | `parts/` | `header.html` (also used over the hero, via the `jv-overlay` class) and `footer.html` |
 | `templates/` | `front-page`, `page`, `page-no-title`, `single`, `archive`, `home`, `search`, `404`, `index` |
+| `bin/build-zip.sh` | Builds the installable ZIP (not part of the theme itself) |
 
 Palette slugs keep Neve's names (`nv-site-bg`, `nv-dark-bg`, `neve-text-color`, …) so colours already saved in posts and pages keep working. Neve's `is-style-secondary` button style is registered too.
 
@@ -28,6 +29,24 @@ The footer tagline is the Site Tagline block, which Polylang translates in **Lan
 ### Polylang fix
 
 Polylang free does not filter Query Loop blocks by language, so the "Stories" section on the English homepage was listing Czech posts. `functions.php` adds the current language to every Query Loop.
+
+## Building the theme ZIP
+
+WordPress installs and updates the theme from a ZIP file. To build one:
+
+1. Raise `Version:` in `style.css` (for example `1.0.0` → `1.0.1`). The stylesheet URL includes the version, so browsers and the cache load the new CSS only after a version change.
+2. Commit your changes. The ZIP is built from the last commit, so uncommitted changes are left out. The script warns you about them.
+3. Run the script:
+
+   ```bash
+   bin/build-zip.sh                                  # writes dist/jvasak-<version>.zip
+   bin/build-zip.sh /mnt/c/Users/<you>/Downloads     # or into another folder, e.g. Windows Downloads from WSL
+   ```
+
+4. In wp-admin, go to **Appearance → Themes → Add New Theme → Upload Theme**, choose the ZIP and confirm **Replace current with uploaded**.
+5. Clear the site cache.
+
+`bin/`, `.gitattributes` and `.gitignore` are left out of the ZIP (`export-ignore` in `.gitattributes`).
 
 ## Fonts
 

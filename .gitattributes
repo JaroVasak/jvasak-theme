@@ -1,0 +1,4 @@
+# Repo tooling, not part of the installed theme
+/bin export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
