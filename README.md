@@ -29,10 +29,6 @@ The footer tagline is the Site Tagline block, which Polylang translates in **Lan
 
 Polylang free does not filter Query Loop blocks by language, so the "Stories" section on the English homepage was listing Czech posts. `functions.php` adds the current language to every Query Loop.
 
-## Local development
-
-Use the production-copy overlay in the [wordpress repo](https://github.com/JaroVasak/wordpress) (`local/docker-compose.prod-copy.yml`). It mounts this folder read-only as `wp-content/themes/jvasak`, so edits show on reload.
-
 ## Fonts
 
 Spectral (Production Type) and DM Sans (Colophon Foundry) are licensed under the SIL Open Font License 1.1: https://openfontlicense.org
