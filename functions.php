@@ -18,9 +18,10 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'jvasak', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
 } );
 
-// Preload the two latin font files used above the fold.
+// Preload the font files used above the fold. Every page needs the latin-ext files too
+// ("Vašák" in the header and footer, Czech text), and the browser only finds them after the CSS.
 add_action( 'wp_head', function () {
-	foreach ( array( 'spectral-normal-latin', 'dm-sans-normal-latin' ) as $font ) {
+	foreach ( array( 'spectral-normal-latin', 'spectral-normal-latin-ext', 'dm-sans-normal-latin', 'dm-sans-normal-latin-ext' ) as $font ) {
 		printf( '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n", esc_url( get_theme_file_uri( "assets/fonts/$font.woff2" ) ) );
 	}
 }, 1 );
