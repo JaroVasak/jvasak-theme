@@ -30,7 +30,7 @@ bin/build-zip.sh /mnt/c/Users/<you>/Downloads  # write elsewhere (WSL → Window
   - `pll_*` calls are always guarded by `function_exists`, so the theme still works without Polylang.
 - **Palette slugs in `theme.json` keep Neve's names** (`nv-site-bg`, `neve-text-color`, …), and the `is-style-secondary` button style is registered for the same reason: existing post content references them. Don't rename them.
 - Design tokens (colours, fonts, sizes, layout widths) live in `theme.json`; everything else is in `style.css` under `jv-*` class names. Non-token colours are tints of the forest green `#17372b`.
-- Headings use Spectral and body text uses DM Sans. Both are OFL-licensed and served from `assets/fonts/`; the two latin "normal" files are preloaded in `functions.php`. If you rename those font files, update the preload list too.
+- Headings use Spectral and body text uses DM Sans. Both are OFL-licensed and served from `assets/fonts/`; the four "normal" files (latin and latin-ext) are preloaded in `functions.php`. If you rename those font files, update the preload list too.
 - `parts/header.html` is also used over the homepage hero and the single-post banner with the `jv-overlay` class (see `templates/front-page.html` and `templates/single.html`).
 - `page-no-title` is a custom template that existing pages are assigned to; keep its slug.
 
