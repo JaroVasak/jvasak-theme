@@ -3,7 +3,7 @@ Theme Name: jvasak
 Theme URI: https://jvasak.com/
 Author: Jaroslav Vašák
 Description: Minimal block theme for jvasak.com. Self-hosted fonts, no front-end JavaScript.
-Version: 1.2.0
+Version: 1.3.0
 Requires at least: 6.6
 Requires PHP: 8.1
 License: GPL-2.0-or-later
@@ -15,6 +15,13 @@ Text Domain: jvasak
    are not tokens are tints of the forest green (#17372b = 23,55,43). */
 
 /* ---------- Base ---------- */
+/* One body text size for the whole site: the fluid "medium" preset in theme.json
+   (17px on phones, about 18px on tablets, 19px on desktops). Leads and secondary text scale with it. */
+:root {
+  --jv-body: var(--wp--preset--font-size--medium);
+  --jv-lead: calc(var(--jv-body) * 1.1);
+  --jv-small: calc(var(--jv-body) * 0.9);
+}
 *, *::before, *::after { box-sizing: border-box; }
 body .wp-site-blocks > * { margin-block-start: 0; }   /* no gap between header, main and footer */
 img { height: auto; }
@@ -303,7 +310,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
   max-width: 590px;
   margin: 1.75rem 0 2.25rem;
   color: rgba(255,255,255,.8);
-  font-size: 1.125rem;
+  font-size: var(--jv-lead);
   line-height: 1.75;
 }
 
@@ -383,7 +390,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .jv-card p:last-child {
   margin: 0;
   color: rgba(23,55,43,.68);
-  font-size: 0.95rem;
+  font-size: var(--jv-small);
   line-height: 1.6;
 }
 
@@ -436,7 +443,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .jv-posts .wp-block-post-title a:hover { color: var(--wp--preset--color--nv-c-1); }
 .jv-posts .wp-block-post-excerpt__excerpt {
   color: rgba(244,241,232,.62);
-  font-size: 0.92rem;
+  font-size: var(--jv-small);
   line-height: 1.65;
 }
 .jv-posts .wp-block-post-excerpt__more-link {
@@ -461,7 +468,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .jv-about p:not(.jv-eyebrow):not(.jv-link-arrow) {
   max-width: 620px;
   color: rgba(23,55,43,.75);
-  font-size: 1.05rem;
+  font-size: var(--jv-body);
   line-height: 1.85;
 }
 
@@ -479,7 +486,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
   max-width: 32rem;
   margin: 1.25rem auto 0;
   color: rgba(23,55,43,.78);
-  font-size: 0.95rem;
+  font-size: var(--jv-small);
 }
 
 .jv-ml { margin-top: 2rem; }
@@ -584,7 +591,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 
 .jv-content > p,
 .jv-content > ul,
-.jv-content > ol { font-size: 1.0625rem; line-height: 1.85; }
+.jv-content > ol { font-size: var(--jv-body); line-height: 1.85; }
 .jv-content > h2 { margin-top: 2.75rem; }
 .jv-content > h3 { margin-top: 2.25rem; }
 .jv-content a { text-underline-offset: 0.2em; }
@@ -654,7 +661,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 }
 .jv-grid .wp-block-post-title a { color: var(--wp--preset--color--neve-text-color); text-decoration: none; }
 .jv-grid .wp-block-post-title a:hover { color: var(--wp--preset--color--neve-link-hover-color); }
-.jv-grid .wp-block-post-excerpt__excerpt { margin: 0; color: rgba(23,55,43,.7); font-size: 0.95rem; line-height: 1.65; }
+.jv-grid .wp-block-post-excerpt__excerpt { margin: 0; color: rgba(23,55,43,.7); font-size: var(--jv-small); line-height: 1.65; }
 
 @media (max-width: 900px) {
   .jv-posts .wp-block-post-template,
@@ -702,7 +709,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .jv-me-text p:not(.jv-eyebrow) {
   max-width: 40rem;
   color: rgba(23,55,43,.75);
-  font-size: 1.0625rem;
+  font-size: var(--jv-body);
   line-height: 1.85;
 }
 .jv-me-section {
@@ -742,7 +749,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .jv-me-hero p.jv-me-lead {
   max-width: 32rem;
   margin-top: 1.75rem;
-  font-size: 1.125rem;
+  font-size: var(--jv-lead);
   line-height: 1.75;
 }
 .jv-me-hero .jv-link-arrow { margin-top: 2rem; }
