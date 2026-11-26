@@ -3,7 +3,7 @@ Theme Name: jvasak
 Theme URI: https://jvasak.com/
 Author: Jaroslav Vašák
 Description: Minimal block theme for jvasak.com. Self-hosted fonts, no front-end JavaScript.
-Version: 1.0.0
+Version: 1.1.0
 Requires at least: 6.6
 Requires PHP: 8.1
 License: GPL-2.0-or-later
@@ -668,6 +668,130 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 
 /* 404 */
 .jv-404 .jv-display-2 { max-width: 14ch; }
+
+/* ---------- About page (content of the About Me / O mně pages, "Page without title") ---------- */
+.jv-content > .jv-me { margin-block-start: 0; }   /* sections sit edge to edge */
+.jv-me em { color: var(--wp--preset--color--neve-link-color); font-style: italic; }
+.jv-me h2:not(.jv-eyebrow) {
+  margin: 0;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.jv-me-cols { gap: clamp(2.5rem, 6vw, 5rem) !important; }
+.jv-me-text p:not(.jv-eyebrow) {
+  max-width: 40rem;
+  color: rgba(23,55,43,.75);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+.jv-me-section {
+  padding-top: clamp(4rem, 7vw, 5.5rem);
+  padding-bottom: clamp(4rem, 7vw, 5.5rem);
+  border-top: 1px solid rgba(23,55,43,.12);
+}
+
+/* Photos: rounded, cropped to a fixed shape, centred when the columns stack */
+.jv-me-photo { margin: 0 auto !important; }
+.jv-me-photo img { display: block; width: 100%; border-radius: 1.5rem; object-fit: cover; }
+.jv-me-photo.is-portrait { max-width: 440px; }
+.jv-me-photo.is-portrait img { aspect-ratio: 4 / 5; object-position: 80% 50%; }
+.jv-me-photo.is-landscape { max-width: 380px; margin-left: 0 !important; }
+.jv-me-photo.is-tall { max-width: 300px; }
+.jv-me-photo.is-tall img { aspect-ratio: 2 / 3; }
+
+/* Hero */
+.jv-me-hero {
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(4rem, 6vw, 5rem);
+}
+.jv-me-hero .jv-eyebrow { display: flex; align-items: center; gap: 0.75rem; }
+.jv-me-hero .jv-eyebrow::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+.jv-me-title {
+  margin: 0;
+  font-size: clamp(2.8rem, 5.4vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.jv-me-hero p.jv-me-lead {
+  max-width: 32rem;
+  margin-top: 1.75rem;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+.jv-me-hero .jv-link-arrow { margin-top: 2rem; }
+
+/* Vision: quote on a sand band */
+.jv-me-band {
+  padding-top: clamp(3.5rem, 6vw, 4.5rem);
+  padding-bottom: clamp(3.5rem, 6vw, 4.5rem);
+  background: var(--wp--preset--color--nv-light-bg);
+  text-align: center;
+}
+.jv-me-band .jv-eyebrow { margin: 0; font-family: inherit; line-height: 1.5; }   /* an h2 styled as an eyebrow */
+.jv-me-quote {
+  max-width: 56rem !important;
+  margin: 1.75rem auto 0 !important;
+  font-family: var(--wp--preset--font-family--spectral);
+  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.jv-me-sign {
+  margin-top: 1.5rem !important;
+  color: var(--wp--preset--color--neve-link-color);
+  font-family: var(--wp--preset--font-family--spectral);
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+/* Currently: numbered items, two per row on wide screens */
+.jv-me-text h2 + .jv-me-photo { margin-top: 2.5rem !important; }
+.jv-me-items {
+  display: grid;
+  gap: 2rem;
+}
+.jv-me-items > * { margin: 0 !important; }
+@media (min-width: 1024px) {
+  .jv-me-items { grid-template-columns: 1fr 1fr; gap: 3rem 2rem; }
+}
+.jv-me-item {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(23,55,43,.2);
+}
+.jv-me-item > * { margin: 0; }
+.jv-me-num { color: rgba(23,55,43,.6); font-size: 0.75rem; letter-spacing: 0.1em; }
+.jv-me-item h3 { margin-top: 1rem; font-size: 1.5rem; }
+.jv-me-item p:not(.jv-me-num) {
+  margin-top: 0.75rem;
+  color: rgba(23,55,43,.72);
+  line-height: 1.75;
+}
+
+/* Closing call to action */
+.jv-me-cta {
+  margin-top: clamp(1rem, 3vw, 2rem) !important;
+  margin-bottom: 0 !important;
+  padding: clamp(3.5rem, 7vw, 5rem) 1.5rem;
+  border-radius: 2rem;
+  background: #e1e5d9;   /* forest at 10 % on cream */
+  text-align: center;
+}
+.jv-me-cta h2:not(.jv-eyebrow) { max-width: 48rem; margin-inline: auto; }
+.jv-me-cta p {
+  max-width: 34rem;
+  margin: 1.5rem auto 0;
+  color: rgba(23,55,43,.78);
+  text-wrap: balance;
+}
+.jv-me-cta .wp-block-buttons { margin-top: 2rem; }
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
