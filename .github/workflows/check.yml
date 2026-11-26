@@ -1,0 +1,40 @@
+---
+name: Check
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  theme:
+    name: Theme checks
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    env:
+      ACTIONLINT_IMAGE: rhysd/actionlint:1.7.12
+
+    steps:
+      - name: Check out repository
+        # actions/checkout v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - name: Lint GitHub Actions workflows
+        run: >-
+          docker run --rm --network none
+          --volume "$PWD:/repo:ro" --workdir /repo
+          "$ACTIONLINT_IMAGE" -color
+
+      - name: Lint theme
+        run: bin/check.sh
