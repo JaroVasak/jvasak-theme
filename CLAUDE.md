@@ -4,15 +4,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-The `jvasak` WordPress block theme for jvasak.com (replaced Neve). Plain theme files: `theme.json`, `style.css`, `functions.php`, HTML block templates in `templates/` and `parts/`, self-hosted woff2 fonts. No build step, no npm, no tests, no linter. [README.md](README.md) documents the layout, shortcodes, and release steps.
+The `jvasak` WordPress block theme for jvasak.com (replaced Neve). Plain theme files: `theme.json`, `style.css`, `functions.php`, HTML block templates in `templates/` and `parts/`, self-hosted woff2 fonts. No build step, no npm or composer. [README.md](README.md) documents the layout, shortcodes, and release steps.
 
-## Release
+## Checks and release
 
 ```bash
+bin/check.sh                                   # PHP lint (8.1 + 8.5), theme file checks, ShellCheck; needs Docker + python3
 bin/build-zip.sh                               # dist/jvasak-<version>.zip, via git archive of HEAD
 bin/build-zip.sh /mnt/c/Users/<you>/Downloads  # write elsewhere (WSL → Windows)
 ```
 
+- `bin/check.sh` is the required **Theme checks** CI job on `main`; run it before committing. Extend `bin/check-theme.py` (standard library only) for new theme invariants.
 - The ZIP is built from the **last commit**; uncommitted changes are left out.
 - **Raise `Version:` in the `style.css` header for every release.** The stylesheet is enqueued with that version as its cache-busting query string, so without a bump browsers and the site cache keep the old CSS.
 - `--prefix=jvasak/` sets the installed theme folder name; don't change it. Repo tooling is kept out of the ZIP with `export-ignore` in [.gitattributes](.gitattributes). Add new non-theme files there too.
