@@ -10,7 +10,7 @@ Minimal block theme for [jvasak.com](https://jvasak.com), replacing Neve. Self-h
 | `style.css` | Theme header and all design CSS (`jv-*` classes), moved out of Neve's Additional CSS |
 | `functions.php` | Menu location, styles, font preload, shortcodes, Polylang query fix |
 | `assets/fonts/` | Spectral 400 (+ italic) and DM Sans 400–700 variable (+ italic), latin and latin-ext woff2 |
-| `parts/` | `header.html` (also used over the hero, via the `jv-overlay` class) and `footer.html` |
+| `parts/` | `header.html` (also used over the homepage hero and the post banner, via the `jv-overlay` class) and `footer.html` |
 | `templates/` | `front-page`, `page`, `page-no-title`, `single`, `archive`, `home`, `search`, `404`, `index` |
 | `bin/build-zip.sh` | Builds the installable ZIP (not part of the theme itself) |
 | `bin/check.sh` | Lints the theme; CI runs it on every pull request (see [Checks](#checks)) |
