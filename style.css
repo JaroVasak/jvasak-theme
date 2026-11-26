@@ -3,7 +3,7 @@ Theme Name: jvasak
 Theme URI: https://jvasak.com/
 Author: Jaroslav Vašák
 Description: Minimal block theme for jvasak.com. Self-hosted fonts, no front-end JavaScript.
-Version: 1.1.0
+Version: 1.2.0
 Requires at least: 6.6
 Requires PHP: 8.1
 License: GPL-2.0-or-later
@@ -551,9 +551,29 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .jv-terms .wp-block-post-terms__separator { color: rgba(23,55,43,.35); }
 .jv-date { margin-top: 1.25rem; color: rgba(23,55,43,.6); font-size: 0.85rem; }
 
-.jv-featured { margin-top: clamp(2rem, 4vw, 3rem) !important; }
-.jv-featured img { border-radius: 1.5rem; }
-.jv-featured + .jv-content { margin-top: clamp(2rem, 4vw, 3rem); }
+/* Single post: featured image as a full-width banner under the overlay header, title on it.
+   The title lines up with the reading column below. Without a featured image the banner is plain forest. */
+.jv-single > .jv-post-hero {
+  min-height: clamp(440px, 78vh, 820px) !important;
+  margin-block-start: 0;
+  padding: 7rem 20px clamp(2.5rem, 5vw, 4rem);
+  background: var(--wp--preset--color--nv-dark-bg);
+}
+.jv-single > .jv-post-hero:not(:has(.wp-block-cover__image-background)) { min-height: 0 !important; padding-top: clamp(8rem, 14vw, 11rem); }
+.jv-post-hero .wp-block-cover__image-background { object-position: 50% 30%; }
+.jv-post-hero:has(.wp-block-cover__image-background) .wp-block-cover__background {
+  opacity: 1 !important;
+  background:
+    linear-gradient(180deg, rgba(9,31,23,.55) 0%, transparent 26%),
+    linear-gradient(0deg, rgba(9,31,23,.88) 0%, rgba(9,31,23,.5) 32%, transparent 62%) !important;
+}
+.jv-post-hero .wp-block-cover__inner-container { width: 100% !important; }
+.jv-post-hero .jv-page-head { margin: 0; }
+.jv-post-hero .wp-block-post-title { color: #fff; text-wrap: balance; }
+.jv-post-hero .jv-terms a { color: var(--wp--preset--color--nv-c-1); }
+.jv-post-hero .jv-terms .wp-block-post-terms__separator { color: rgba(255,255,255,.45); }
+.jv-post-hero .jv-date { color: rgba(255,255,255,.75); }
+.jv-single > .jv-content { margin-top: clamp(2.5rem, 5vw, 4rem); }
 
 /* Full-width covers in older content (About pages): keep their content at the wide width, as Neve did */
 .jv-content .wp-block-cover.alignfull > .wp-block-cover__inner-container {
