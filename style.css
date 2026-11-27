@@ -3,7 +3,7 @@ Theme Name: jvasak
 Theme URI: https://jvasak.com/
 Author: Jaroslav Vašák
 Description: Minimal block theme for jvasak.com. Self-hosted fonts, no front-end JavaScript.
-Version: 1.3.1
+Version: 1.4.0
 Requires at least: 6.6
 Requires PHP: 8.1
 License: GPL-2.0-or-later
@@ -472,6 +472,122 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
   line-height: 1.85;
 }
 
+/* Watch & listen (YouTube teaser: text column + linked video card) */
+.jv-watch { padding-top: 0; }
+.jv-watch-card {
+  gap: 0 !important;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 2rem;
+  background: var(--wp--preset--color--nv-light-bg);
+  align-items: stretch !important;
+}
+@media (max-width: 1023px) {   /* stack until there is room for the big heading beside the video */
+  .jv-watch-card { flex-wrap: wrap !important; }
+  .jv-watch-card > .wp-block-column { flex-basis: 100% !important; }
+}
+@media (min-width: 1024px) {
+  .jv-watch-text { flex: 0.78 1 0 !important; }
+  .jv-watch-media { flex: 1.22 1 0 !important; }
+}
+.jv-watch-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem) !important;
+}
+.jv-watch-text > * { margin-block-start: 0; }
+.jv-watch .jv-display-2 { font-size: clamp(2.6rem, 4.5vw, 4.5rem); }
+.jv-watch-text p:not(.jv-eyebrow):not(.jv-link-arrow) {
+  max-width: 440px;
+  margin: 1.5rem 0 0;
+  color: rgba(23,55,43,.75);
+  font-size: var(--jv-small);
+  line-height: 1.75;
+}
+.jv-watch .jv-link-arrow { margin-top: 2rem; }
+
+.jv-watch-media { display: flex; }
+.jv-video {
+  position: relative;
+  display: block;
+  flex: 1;
+  min-height: 300px;
+  margin: 12px;
+  overflow: hidden;
+  border-radius: 1.35rem;
+  background: var(--wp--preset--color--nv-dark-bg);
+  color: #fff;
+  text-decoration: none;
+}
+.jv-video img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .7s ease;
+}
+.jv-video:hover img { transform: scale(1.03); }
+.jv-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(13,40,30,.85) 0%, rgba(13,40,30,.05) 50%, transparent 100%);
+}
+.jv-video-play {
+  position: absolute;
+  z-index: 1;
+  top: 1.5rem;
+  left: 1.5rem;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--wp--preset--color--nv-c-1);
+  color: var(--wp--preset--color--neve-text-color);
+  box-shadow: 0 10px 25px rgba(9,31,23,.25);
+  transition: transform .3s ease;
+}
+.jv-video:hover .jv-video-play { transform: scale(1.05); }
+.jv-video-play svg { width: 24px; height: 24px; }
+.jv-video-caption {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1.5rem;
+}
+.jv-video-label {
+  display: block;
+  color: var(--wp--preset--color--nv-c-1);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.jv-video-title {
+  display: block;
+  max-width: 650px;
+  margin-top: 0.75rem;
+  font-family: var(--wp--preset--font-family--spectral);
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 600px) {
+  .jv-video { min-height: 420px; margin: 16px; }
+  .jv-video-play { top: 2rem; left: 2rem; width: 64px; height: 64px; }
+  .jv-video-play svg { width: 28px; height: 28px; }
+  .jv-video-caption { padding: 2.25rem; }
+  .jv-video-title { font-size: 2.25rem; }
+}
+@media (min-width: 1024px) {
+  .jv-video { min-height: 500px; }
+}
+
 /* Newsletter (MailerLite) */
 .jv-newsletter {
   margin-bottom: 2rem;
@@ -826,6 +942,7 @@ a:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
   .jv-posts .wp-block-post-featured-image img,
   .jv-grid .wp-block-post-featured-image img,
   .jv-posts .wp-block-post-title a,
+  .jv-video img, .jv-video-play,
   .jv-menu a::after { transition: none; }
   .jv-ml .ml-form-embedSubmitLoad { animation: none; }
 }
